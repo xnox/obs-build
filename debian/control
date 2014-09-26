@@ -1,0 +1,16 @@
+Source: obs-build
+Section: devel
+Priority: extra
+Maintainer: Dimitri John Ledkov <dimitri.j.ledkov@linux.intel.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6.0
+
+Package: obs-build
+Architecture: all
+Depends: ${perl:Depends}, rpm
+Recommends: rpm2cpio, osc, libcrypt-ssleay-perl
+Description: scripts for building RPM/debian packages for multiple distributions
+ This package provides scripts for building RPM and debian packages in
+ contained environments for various build distributions. These tools
+ are use by Open Build Service workers and openSUSE distribution by
+ default.
