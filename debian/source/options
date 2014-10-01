@@ -1,1 +1,2 @@
 no-preparation
+extend-diff-ignore=configs/sles11.conf
