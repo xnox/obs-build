@@ -1,7 +1,7 @@
 VERSION=0.1
 SCM=$(shell if test -d .svn; then echo svn; elif test -d .git; then echo git; fi)
 DATE=$(shell date +%Y%m%d%H%M)
-BUILD=build
+BUILD=obs-build
 
 INITVM_ARCH=$(shell bash -c '. common_functions ; build_host_arch; echo $$BUILD_INITVM_ARCH')
 
@@ -67,9 +67,10 @@ install:
 	install -m644 build-pkg build-pkg-* $(DESTDIR)$(pkglibdir)
 	install -m644 *.pm baselibs_global*.conf lxc.conf $(DESTDIR)$(pkglibdir)
 	install -m644 configs/* $(DESTDIR)$(pkglibdir)/configs
-	install -m644 build.1 $(DESTDIR)$(man1dir)
-	ln -sf $(pkglibdir)/build $(DESTDIR)$(bindir)/build
-	ln -sf $(pkglibdir)/vc    $(DESTDIR)$(bindir)/buildvc
+	install -d $(DESTDIR)$(man1dir)
+	install -T -m644 build.1 $(DESTDIR)$(man1dir)/obs-build.1
+	ln -sf $(pkglibdir)/build $(DESTDIR)$(bindir)/obs-build
+	ln -sf $(pkglibdir)/vc    $(DESTDIR)$(bindir)/obs-buildvc
 	ln -sf $(pkglibdir)/unrpm $(DESTDIR)$(bindir)/unrpm
 
 # Allow initvm to be packaged seperately from the rest of build.  This
