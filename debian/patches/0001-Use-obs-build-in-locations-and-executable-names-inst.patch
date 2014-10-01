@@ -1,0 +1,61 @@
+From 0928a36fed02c7c8415815d4b44649c5dfa3a276 Mon Sep 17 00:00:00 2001
+From: Dimitri John Ledkov <dimitri.j.ledkov@intel.com>
+Date: Wed, 1 Oct 2014 10:44:55 +0100
+Subject: Use obs-build in locations and executable names, instead of just
+ build.
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way, Swindon SN3 1RJ
+
+Signed-off-by: Dimitri John Ledkov <dimitri.j.ledkov@intel.com>
+---
+ Makefile | 6 +++---
+ build    | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index fd3ec66..59282cd 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,7 @@
+ VERSION=0.1
+ SCM=$(shell if test -d .svn; then echo svn; elif test -d .git; then echo git; fi)
+ DATE=$(shell date +%Y%m%d%H%M)
+-BUILD=build
++BUILD=obs-build
+ 
+ INITVM_ARCH=$(shell bash -c '. common_functions ; build_host_arch; echo $$BUILD_INITVM_ARCH')
+ 
+@@ -68,8 +68,8 @@ install:
+ 	install -m644 *.pm baselibs_global*.conf lxc.conf $(DESTDIR)$(pkglibdir)
+ 	install -m644 configs/* $(DESTDIR)$(pkglibdir)/configs
+ 	install -m644 build.1 $(DESTDIR)$(man1dir)
+-	ln -sf $(pkglibdir)/build $(DESTDIR)$(bindir)/build
+-	ln -sf $(pkglibdir)/vc    $(DESTDIR)$(bindir)/buildvc
++	ln -sf $(pkglibdir)/build $(DESTDIR)$(bindir)/obs-build
++	ln -sf $(pkglibdir)/vc    $(DESTDIR)$(bindir)/obs-buildvc
+ 	ln -sf $(pkglibdir)/unrpm $(DESTDIR)$(bindir)/unrpm
+ 
+ # Allow initvm to be packaged seperately from the rest of build.  This
+diff --git a/build b/build
+index 9f9fb72..0911d61 100755
+--- a/build
++++ b/build
+@@ -13,8 +13,8 @@ if test "$0" = /sbin/init ; then
+ fi
+ 
+ test -z "$BUILD_DIR" -a -e /.build/build.data -a -z "$BUILD_IGNORE_2ND_STAGE" && BUILD_DIR=/.build
+-test -z "$BUILD_DIR" && BUILD_DIR=/usr/lib/build
+-test -z "$BUILD_ROOT" && BUILD_ROOT=/var/tmp/build-root
++test -z "$BUILD_DIR" && BUILD_DIR=/usr/lib/obs-build
++test -z "$BUILD_ROOT" && BUILD_ROOT=/var/tmp/obs-build-root
+ test -z "$CONFIG_DIR" && CONFIG_DIR="$BUILD_DIR/configs"
+ 
+ export BUILD_ARCH BUILD_HOST_ARCH BUILD_ROOT BUILD_RPMS BUILD_DIR BUILD_DEBUG
+@@ -73,7 +73,7 @@ SIGNDUMMY=
+ DO_STATISTICS=
+ RUN_SHELL=
+ CCACHE=
+-CACHE_DIR=/var/cache/build
++CACHE_DIR=/var/cache/obs-build
+ 
+ 
+ # This is for insserv
