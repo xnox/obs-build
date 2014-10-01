@@ -2,4 +2,4 @@ obs-build (20140918-1) unstable; urgency=medium
 
   * Initial release. (Closes: #762949)
 
- -- Dimitri John Ledkov <dimitri.j.ledkov@linux.intel.com>  Fri, 26 Sep 2014 13:22:59 +0100
+ -- Dimitri John Ledkov <dimitri.j.ledkov@linux.intel.com>  Wed, 01 Oct 2014 11:46:00 +0100

@@ -67,7 +67,8 @@ install:
 	install -m644 build-pkg build-pkg-* $(DESTDIR)$(pkglibdir)
 	install -m644 *.pm baselibs_global*.conf lxc.conf $(DESTDIR)$(pkglibdir)
 	install -m644 configs/* $(DESTDIR)$(pkglibdir)/configs
-	install -m644 build.1 $(DESTDIR)$(man1dir)
+	install -d $(DESTDIR)$(man1dir)
+	install -T -m644 build.1 $(DESTDIR)$(man1dir)/obs-build.1
 	ln -sf $(pkglibdir)/build $(DESTDIR)$(bindir)/obs-build
 	ln -sf $(pkglibdir)/vc    $(DESTDIR)$(bindir)/obs-buildvc
 	ln -sf $(pkglibdir)/unrpm $(DESTDIR)$(bindir)/unrpm
