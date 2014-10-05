@@ -1,0 +1,26 @@
+From 3c5c14d5bbd0e93bd248a26c7a538dc0017236a3 Mon Sep 17 00:00:00 2001
+From: Dimitri John Ledkov <dimitri.j.ledkov@intel.com>
+Date: Fri, 3 Oct 2014 14:28:45 +0100
+Subject: Fix Build::Zypp:parsecfg expected full config file name.
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way, Swindon SN3 1RJ
+
+Fixes #135
+
+Signed-off-by: Dimitri John Ledkov <dimitri.j.ledkov@intel.com>
+---
+ Build/Zypp.pm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Build/Zypp.pm b/Build/Zypp.pm
+index bd0ced0..354ca01 100644
+--- a/Build/Zypp.pm
++++ b/Build/Zypp.pm
+@@ -8,7 +8,7 @@ sub parsecfg {
+   my ($repocfg, $reponame) = @_;
+ 
+   local *REPO;
+-  open(REPO, '<', "$root/etc/zypp/repos.d/$repocfg.repo") or return undef;
++  open(REPO, '<', "$root/etc/zypp/repos.d/$repocfg") or return undef;
+   my $name;
+   my $repo = {};
+   while (<REPO>) {
